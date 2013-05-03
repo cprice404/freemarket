@@ -1,6 +1,7 @@
 (ns freemarket.test.core
   (:use clojure.test
         freemarket.core
+        [freemarket.impl :only [swap-and-return-old-val! work-queue work-queue-sentinel-complete]]
         freemarket.testutils.logging)
   (:require [clojure.tools.logging :as log])
   (:import  [java.util.concurrent ExecutionException]))
