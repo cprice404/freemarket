@@ -1,4 +1,4 @@
-(defproject freemarket/freemarket "0.1.1"
+(defproject freemarket/freemarket "0.1.2-SNAPSHOT"
    :description "A clojure Producer/Consumer library"
    :license {:name "MIT License"
             :url "http://www.opensource.org/licenses/mit-license.php"
