@@ -39,11 +39,13 @@ Please open issues against the [freemarket repo on Github](https://github.com/cp
 
 ## Motivation
 
-I was looking for a simple way to manage producer-consumer tasks while retaining a good deal of control over the number of producer threads, number of consumer threads, and maximum amount of work to queue up.
+I was looking for a simple way to manage producer-consumer tasks while retaining a good deal of control over the number of producer threads, number of consumer threads, and maximum amount of work to queue up.  In addition, I wanted something that would work well in situations where there was a finite amount of work to be done.  I wanted a system that could recognize when all of the work was completed and automatically shut things down without the need for me to do extensive cleanup.
 
 Clojure's concurrency tools (agents, pmap, etc.) make it extremely easy to write concurrent code if your specific problem space is compatible with the assumptions that clojure makes about thread pool sizes, but upon encountering a task that did not fit well with those constraints, I had trouble finding anything that was simple and also flexible enough to meet my needs.
 
- `freemarket` aims to fill that gap by providing a minimal API for spawning a specific number of producer and consumer threads.  Version 0.1 is a first attempt at that; it should definitely be considered "alpha", and there's a good chance the API will change a bit before I get comfortable with it.  It's also in desperate need of better error-handling hooks; in the current implementation, if any exception occurs in any of your workers (producer or consumer), the whole system will shut itself down without giving you any opportunity to handle the exception.
+ `freemarket` aims to fill that gap by providing a minimal API for spawning a specific number of producer and consumer threads.  It's built around the concept of producer and consumer "work functions", which are called repeatedly to produce / consume work items.  When there is no more work to do, the work function is expected to return nil; when this happens, and the consumer work queue empties out, the system will automatically shut itself down.
+ 
+This library should definitely be considered "alpha", and there's a good chance the API will change a bit before I get comfortable with it.  It's also in desperate need of better error-handling hooks; in the current implementation, if any exception occurs in any of your workers (producer or consumer), the whole system will shut itself down without giving you any opportunity to handle the exception.
 
 ## Usage
 
