@@ -57,7 +57,7 @@ Create a producer:
 (def myproducer (producer producer-work-fn num-workers max-work))
 ```
 
-`producer-work-fn` should be a function that returns one work item per call, and returns `nil` when there is no more work to do.  (This indicates to `freemarket` that it's ok to shut down the producer side of the system.)  Each item returned by `work-fn` will be enqueued for consumer workers to process later.
+`producer-work-fn` should be a function that returns one work item per call, and returns `nil` when there is no more work to do.  (This indicates to `freemarket` that it's ok to shut down the producer side of the system.)  The function will be called repeatedly by the producer worker threads, and each item returned by `work-fn` will be enqueued for consumer workers to process later.
 
 `num-workers` is an int which limits the number of threads that will be used to produce work.
 
