@@ -20,7 +20,7 @@ If you are using Maven, add the following repository definition to your `pom.xml
 With Leiningen:
 
 ``` clj
-[freemarket "0.1.0"]
+[freemarket "0.1.1"]
 ```
 
 With Maven:
@@ -29,7 +29,7 @@ With Maven:
 <dependency>
   <groupId>freemarket</groupId>
   <artifactId>freemarket</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
