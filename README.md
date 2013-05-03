@@ -73,7 +73,7 @@ Create a producer:
 
  `myproducer` is a producer that you created in an earlier call to `producer`.
 
- `consumer-work-fn` is a function that accepts a single argument whose type is compatible with the output of the `producer-work-fn` that you used when creating your producer.  It will be called on each work item that is produced by the producer; the result will then be enqueued in the consumer's result queue, which can be accessed as a clojure `seq` as we'll see in a moment.
+ `consumer-work-fn` is a function that accepts a single argument whose type is compatible with the output of the `producer-work-fn` that you used when creating your producer.  It will be called by the consumer worker threads, one time for each work item that is produced by the producer.  The result will then be enqueued in the consumer's result queue, which can be accessed as a clojure `seq` as we'll see in a moment.
 
  `num-workers` is an int which limits the number of threads that will be used to consume work from the producer queue.
 
